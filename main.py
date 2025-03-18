@@ -33,5 +33,5 @@ elif st.session_state.get('page') == 'product_2':
     from app import product_2
     product_2.show_product_detail()
 else:
-    import home
+    from app import home
     home.show_homepage()

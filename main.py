@@ -24,13 +24,13 @@ if st.sidebar.button("🛋️ Product 2"):
 
 # Display the selected page
 if st.session_state.get('page') == 'home':
-    import home
+    from app import home
     home.show_homepage()
 elif st.session_state.get('page') == 'product_1':
-    import product_1
+    from app import product_1
     product_1.show_product_detail()
 elif st.session_state.get('page') == 'product_2':
-    import product_2
+    from app import product_2
     product_2.show_product_detail()
 else:
     import home

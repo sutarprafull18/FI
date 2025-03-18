@@ -1,9 +1,5 @@
 import streamlit as st
-import sys
 import os
-
-# Add the app directory to the system path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'app')))
 
 # Set page configuration
 st.set_page_config(

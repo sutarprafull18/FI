@@ -32,26 +32,40 @@ with col2:
         st.session_state.page = 'contact'
 
 st.sidebar.markdown("Product Categories")
-if st.sidebar.button("🛋️ S1_71"):
-    st.session_state.page = 'S1_71'
-if st.sidebar.button("🛋️ Sahara"):
-    st.session_state.page = 'Sahara'
-if st.sidebar.button("🪑 Custom Furniture"):
-    st.session_state.page = 'custom'
+
+# Product buttons in required order
+product_pages = [
+    "S1_71", "Sahara", "Durban", "Casa", "3306 Rec",
+    "Z006", "E091", "BIG BOX", "Chester", "Stallion"
+]
+
+all_products = product_pages + [
+    "5713", "5855", "6429", "Boat", "FM252", "Jupiter", "Linus", "Longer", "Niwasa", "Prada",
+    "Single Chair - bed", "Steel Land", "Straight Line", "Violino", "WA355", "ZA63",
+    "ZM896", "ZM899", "wooden"
+]
+
+for product in product_pages:
+    if st.sidebar.button(f"🛋️ {product}"):
+        st.session_state.page = product
+
+# Add "ALL" button to display all products
+if st.sidebar.button("🛋️ ALL"):
+    st.session_state.page = 'all'
 
 # Display the selected page
 try:
     if st.session_state.page == 'home':
         from app import home
         home.show_homepage()
-    elif st.session_state.page == 'S1_71':
-        from app import S1_71
-        S1_71.show_product_detail()
-    elif st.session_state.page == 'Sahara':
-        from app import Sahara
-        Sahara.show_product_detail()
+    elif st.session_state.page in product_pages:
+        exec(f"from app import {st.session_state.page}\n{st.session_state.page}.show_product_detail()")
+    elif st.session_state.page == 'all':
+        st.title("All Products")
+        st.write("Browse through our full range of premium furniture.")
+        for product in all_products:
+            exec(f"from app import {product}\n{product}.show_product_detail()")
     elif st.session_state.page == 'contact':
-        # If you don't have a contact page, you can create a simple one
         st.title("Contact Furn Italia")
         st.write("Get in touch with us:")
         
@@ -63,11 +77,6 @@ try:
             
             if submitted:
                 st.success("Thank you for your message! We'll get back to you soon.")
-    elif st.session_state.page == 'custom':
-        # Placeholder for custom furniture page
-        st.title("Custom Furniture Design")
-        st.write("Design your dream furniture with Furn Italia")
-        
 except Exception as e:
     st.error(f"An error occurred: {e}")
     st.error("Please check the page module or contact support.")

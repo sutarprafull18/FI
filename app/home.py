@@ -1,12 +1,7 @@
 import streamlit as st
-import base64
 
-def get_base64_image(image_path):
-    """Convert image to base64 for embedding."""
-    with open(image_path, "rb") as img_file:
-        return base64.b64encode(img_file.read()).decode()
-
-def main():
+def show_homepage():
+    """Main homepage function for Furn Italia"""
     # Page Configuration
     st.set_page_config(
         page_title="Furn Italia - Premium Furniture Showroom", 
@@ -150,11 +145,12 @@ def main():
     # Testimonial Section
     st.markdown("---")
     st.markdown("## What Our Customers Say")
-    st.quote('"Furn Italia transformed our living space with their incredible design and quality furniture." - Happy Customer')
+    st.markdown("> \"Furn Italia transformed our living space with their incredible design and quality furniture.\" - Happy Customer")
 
     # Footer
     st.markdown("---")
     st.markdown("© 2024 Furn Italia. All Rights Reserved.")
 
-if __name__ == "__main__":
-    main()
+# Uncomment the line below if you want to run this directly
+# if __name__ == "__main__":
+#     show_homepage()

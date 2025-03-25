@@ -36,11 +36,7 @@ st.sidebar.markdown("Product Categories")
 # Product buttons in required order
 product_pages = [
     "S1_71", "Sahara", "Durban", "Casa", "3306 Rec",
-    "Z006", "E091", "BIG BOX", "Chester", "Stallion"
-]
-
-all_products = product_pages + [
-    "5713", "5855", "6429", "Boat", "FM252", "Jupiter", "Linus", "Longer", "Niwasa", "Prada",
+    "Z006", "E091", "BIG BOX", "Chester", "Stallion", "5713", "5855", "6429", "Boat", "FM252", "Jupiter", "Linus", "Longer", "Niwasa", "Prada",
     "Single Chair - bed", "Steel Land", "Straight Line", "Violino", "WA355", "ZA63",
     "ZM896", "ZM899", "wooden"
 ]
@@ -49,9 +45,6 @@ for product in product_pages:
     if st.sidebar.button(f"🛋️ {product}"):
         st.session_state.page = product
 
-# Add "ALL" button to display all products
-if st.sidebar.button("🛋️ ALL"):
-    st.session_state.page = 'all'
 
 # Display the selected page
 try:
@@ -60,11 +53,6 @@ try:
         home.show_homepage()
     elif st.session_state.page in product_pages:
         exec(f"from app import {st.session_state.page}\n{st.session_state.page}.show_product_detail()")
-    elif st.session_state.page == 'all':
-        st.title("All Products")
-        st.write("Browse through our full range of premium furniture.")
-        for product in all_products:
-            exec(f"from app import {product}\n{product}.show_product_detail()")
     elif st.session_state.page == 'contact':
         st.title("Contact Furn Italia")
         st.write("Get in touch with us:")

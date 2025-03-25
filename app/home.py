@@ -2,13 +2,6 @@ import streamlit as st
 
 def show_homepage():
     """Main homepage function for Furn Italia"""
-    # Page Configuration
-    st.set_page_config(
-        page_title="Furn Italia - Premium Furniture Showroom", 
-        page_icon="🛋️", 
-        layout="wide"
-    )
-
     # Product Categories Data
     product_categories = [
         {
@@ -150,7 +143,3 @@ def show_homepage():
     # Footer
     st.markdown("---")
     st.markdown("© 2024 Furn Italia. All Rights Reserved.")
-
-# Uncomment the line below if you want to run this directly
-# if __name__ == "__main__":
-#     show_homepage()

@@ -37,7 +37,7 @@ st.sidebar.markdown("Product Categories")
 product_pages = [
     "S1_71", "Sahara", "Durban", "Casa", "FI_3306_Rec",
     "Z006", "E091", "BIG_BOX", "Chester", "Stallion", "FI_5713", "FI_5855", "FI_6429", "Boat", "FM252", "Jupiter", "Linus", "Longer", "Niwasa", "Prada",
-    "Single_Chair_bed", "Steel_Land", "Straight_Line", "Violino", "WA355", "ZA63",
+    "Single_bed", "Steel_Land", "Straight_Line", "Violino", "WA355", "ZA63",
     "ZM896", "ZM899", "wooden"
 ]
 

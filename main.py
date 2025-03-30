@@ -35,7 +35,7 @@ st.sidebar.markdown("Product Categories")
 
 # Product buttons in required order
 product_pages = [
-    "S1_71", "Sahara", "Durban", "Casa", "3306_Rec",
+    "S1_71", "Sahara", "Durban", "Casa", "FI_3306_Rec",
     "Z006", "E091", "BIG BOX", "Chester", "Stallion", "5713", "5855", "6429", "Boat", "FM252", "Jupiter", "Linus", "Longer", "Niwasa", "Prada",
     "Single Chair - bed", "Steel Land", "Straight Line", "Violino", "WA355", "ZA63",
     "ZM896", "ZM899", "wooden"

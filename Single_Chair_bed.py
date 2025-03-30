@@ -6,7 +6,7 @@ def show_product_detail():
     st.write("Description of Single Chair - bed.")
 
     # Path to the images folder for Single Chair - bed
-    image_folder = "images/Single Chair - bed"
+    image_folder = "images/Single_Chair_bed"
 
     # List all images in the folder
     if os.path.exists(image_folder):

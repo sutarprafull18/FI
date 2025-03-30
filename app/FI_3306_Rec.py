@@ -2,8 +2,8 @@ import streamlit as st
 import os
 
 def show_product_detail():
-    st.title("3306_Rec Details")
-    st.write("Description of 3306_Rec.")
+    st.title("FI_3306_Rec Details")
+    st.write("Description of FI_3306_Rec.")
 
     # Path to the images folder for 3306_Rec
     image_folder = "images/3306_Rec"
@@ -17,4 +17,4 @@ def show_product_detail():
             image_path = os.path.join(image_folder, image_file)
             st.image(image_path, caption=image_file, use_column_width=True)
     else:
-        st.write("No images found for 3306_Rec.")
+        st.write("No images found for FI_3306_Rec.")

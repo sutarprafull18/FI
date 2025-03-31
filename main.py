@@ -6,7 +6,7 @@ import re
 # Set page configuration
 st.set_page_config(
     page_title="Furn Italia - Premium Furniture",
-    page_icon="🪑",
+    page_icon="Furn Italia",
     layout="wide"
 )
 
@@ -22,12 +22,12 @@ st.sidebar.markdown("---")
 col1, col2 = st.sidebar.columns(2)
 
 with col1:
-    if st.button("\ud83c\udfe0 Home"):
+    if st.button("Home"):
         st.session_state.page = 'home'
         st.rerun()
 
 with col2:
-    if st.button("\ud83d\udcde Contact"):
+    if st.button("Contact"):
         st.session_state.page = 'contact'
         st.rerun()
 

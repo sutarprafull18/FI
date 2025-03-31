@@ -1,9 +1,7 @@
 import streamlit as st
-import sys
+import importlib
 import os
-
-# Add the app directory to the system path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'app')))
+import re
 
 # Set page configuration
 st.set_page_config(
@@ -12,11 +10,11 @@ st.set_page_config(
     layout="wide"
 )
 
-# Initialize session state for page navigation if not already set
+# Initialize session state for page navigation
 if 'page' not in st.session_state:
     st.session_state.page = 'home'
 
-# Side panel for navigation
+# Sidebar Navigation
 st.sidebar.title("Furn Italia")
 st.sidebar.markdown("---")
 
@@ -24,35 +22,42 @@ st.sidebar.markdown("---")
 col1, col2 = st.sidebar.columns(2)
 
 with col1:
-    if st.button("🏠 Home"):
+    if st.button("\ud83c\udfe0 Home"):
         st.session_state.page = 'home'
+        st.rerun()
 
 with col2:
-    if st.button("📞 Contact"):
+    if st.button("\ud83d\udcde Contact"):
         st.session_state.page = 'contact'
+        st.rerun()
 
-st.sidebar.markdown("Product Categories")
+st.sidebar.markdown("### Product Categories")
 
-# Product buttons in required order
+# Product pages (numbers replaced with FI_xxxx format)
 product_pages = [
-    "S1_71", "Sahara", "Durban", "Casa", "FI_3306_Rec",
-    "Z006", "E091", "BIG_BOX", "Chester", "Stallion", "FI_5713", "FI_5855", "FI_6429", "Boat", "FM252", "Jupiter", "Linus", "Longer", "Niwasa", "Prada",
-    "Single_bed", "Steel_Land", "Straight_Line", "Violino", "WA355", "ZA63",
-    "ZM896", "ZM899", "wooden"
+    "S1_FI_71", "Sahara", "Durban", "Casa", "Rec_FI_3306",
+    "Z_FI_006", "E_FI_091", "BIG_BOX", "Chester", "Stallion", "FI_5713", "FI_5855", "FI_6429", "Boat", "FM_FI_252", "Jupiter", "Linus", "Longer", "Niwasa", "Prada",
+    "Single_Chair_bed", "Steel_Land", "Straight_Line", "Violino", "WA_FI_355", "ZA_FI_63",
+    "ZM_FI_896", "ZM_FI_899", "wooden"
 ]
 
-for product in product_pages:
-    if st.sidebar.button(f"🛋️ {product}"):
-        st.session_state.page = product
+# Search box for filtering products
+search_query = st.sidebar.text_input("Search Product:")
+filtered_products = [p for p in product_pages if search_query.lower() in p.lower()]
 
+# Dropdown menu for product selection
+selected_product = st.sidebar.selectbox("Select a Product:", ["None"] + filtered_products)
 
-# Display the selected page
+if selected_product != "None":
+    st.session_state.page = selected_product
+    st.rerun()
+
+# Try to load the selected page
 try:
     if st.session_state.page == 'home':
         from app import home
         home.show_homepage()
-    elif st.session_state.page in product_pages:
-        exec(f"from app import {st.session_state.page}\n{st.session_state.page}.show_product_detail()")
+
     elif st.session_state.page == 'contact':
         st.title("Contact Furn Italia")
         st.write("Get in touch with us:")
@@ -65,6 +70,17 @@ try:
             
             if submitted:
                 st.success("Thank you for your message! We'll get back to you soon.")
+
+    elif st.session_state.page in product_pages:
+        module_name = f"app.{st.session_state.page}"
+        try:
+            module = importlib.import_module(module_name)
+            module.show_product_detail()
+        except ModuleNotFoundError:
+            st.error(f"Module for {st.session_state.page} not found.")
+        except AttributeError:
+            st.error(f"Function `show_product_detail()` not found in {st.session_state.page}.")
+
 except Exception as e:
     st.error(f"An error occurred: {e}")
     st.error("Please check the page module or contact support.")

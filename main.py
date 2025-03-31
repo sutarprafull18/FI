@@ -24,30 +24,39 @@ col1, col2 = st.sidebar.columns(2)
 with col1:
     if st.button("Home"):
         st.session_state.page = 'home'
+        st.experimental_rerun()
 
 with col2:
     if st.button("Contact"):
         st.session_state.page = 'contact'
+        st.experimental_rerun()
 
 st.sidebar.markdown("### Product Categories")
 
-# Product pages (numbers replaced with FI_xxxx format)
-product_pages = [
-    "S1_71", "Sahara", "Durban", "Casa", "FI_3306_Rec",
-    "Z006", "E091", "BIG_BOX", "Chester", "Stallion", "FI_5713", "FI_5855", "FI_6429", "Boat", "FM252", "Jupiter", "Linus", "Longer", "Niwasa", "Prada",
-    "Single_Chair_bed", "Steel_Land", "Straight_Line", "Violino", "WA355", "ZA63",
-    "ZM896", "ZM899", "wooden"
-]
+# Categorized product pages
+categories = {
+    "Fabric Sofa": [
+        "S1_71", "Sahara", "Durban", "Casa", "FI_3306_Rec",
+        "Z006", "E091", "BIG_BOX", "Chester", "Stallion", "FI_5713", "FI_5855", "FI_6429"
+    ],
+    "Leather Sofa": [],
+    "Bedroom": [],
+    "Outdoor": [],
+    "Dining": [],
+    "Office": []
+}
 
 # Search box for filtering products
 search_query = st.sidebar.text_input("Search Product:")
-filtered_products = [p for p in product_pages if search_query.lower() in p.lower()]
 
-# Dropdown menu for product selection
-selected_product = st.sidebar.selectbox("Select a Product:", ["None"] + filtered_products, index=0)
-
-if selected_product != "None":
-    st.session_state.page = selected_product
+# Display categories
+for category, products in categories.items():
+    st.sidebar.markdown(f"#### {category}")
+    filtered_products = [p for p in products if search_query.lower() in p.lower()]
+    for product in filtered_products:
+        if st.sidebar.button(product, key=product):
+            st.session_state.page = product
+            st.experimental_rerun()
 
 # Try to load the selected page
 try:
@@ -68,7 +77,7 @@ try:
             if submitted:
                 st.success("Thank you for your message! We'll get back to you soon.")
 
-    elif st.session_state.page in product_pages:
+    elif st.session_state.page in sum(categories.values(), []):
         module_name = f"app.{st.session_state.page}"
         try:
             module = importlib.import_module(module_name)

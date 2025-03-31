@@ -120,7 +120,7 @@ def show_homepage():
 
     with col2:
         # Placeholder for category image
-        st.image(f"https://via.placeholder.com/300x400?text={selected_category}")
+        st.image(f"https://github.com/sutarprafull18/FI/blob/a1547e43360960bdd25a1d7c91dc06dd6add865e/app/FI%20BLACK%20LOGO.png")
 
     # Product Grid
     st.markdown("## Our Complete Product Range")

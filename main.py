@@ -25,19 +25,18 @@ if st.sidebar.button("Home"):
     st.session_state.page = 'home'
     st.session_state.selected_category = None
 
-if st.sidebar.button("Contact"):
-    st.session_state.page = 'contact'
-    st.session_state.selected_category = None
-
 st.sidebar.markdown("### Product Categories")
 
 # Categorized product pages
 categories = {
     "Fabric Sofa": [
-        "S1_71", "Sahara", "Durban", "Casa", "FI_3306_Rec",
-        "Z006", "E091", "BIG_BOX", "Chester", "Stallion", "FI_5713", "FI_5855", "FI_6429"
+         "Sahara", "Durban", "Casa", 
+       "Stallion",  "Linus",  "Niwasa", "Prada",
+     "Steel_Land", "Straight_Line", "Violino",
+     
     ],
-    "Leather Sofa": [],
+    "Leather Sofa": ["S1_71","FI_3306_Rec","BIG_BOX","Z006", "E091", "FI_5713", "FI_5855", "FI_6429", "FM252", "Jupiter","ZM896", "ZM899", "WA355", "ZA63",],
+    "Other": ["Chester","Single_Chair_bed","Longer","wooden","Boat",],
     "Bedroom": [],
     "Outdoor": [],
     "Dining": [],
@@ -65,19 +64,6 @@ try:
     if st.session_state.page == 'home':
         from app import home
         home.show_homepage()
-
-    elif st.session_state.page == 'contact':
-        st.title("Contact Furn Italia")
-        st.write("Get in touch with us:")
-        
-        with st.form("contact_form"):
-            name = st.text_input("Your Name")
-            email = st.text_input("Your Email")
-            message = st.text_area("Your Message")
-            submitted = st.form_submit_button("Send Message")
-            
-            if submitted:
-                st.success("Thank you for your message! We'll get back to you soon.")
 
     elif st.session_state.page in sum(categories.values(), []):
         module_name = f"app.{st.session_state.page}"

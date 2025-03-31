@@ -24,12 +24,10 @@ col1, col2 = st.sidebar.columns(2)
 with col1:
     if st.button("Home"):
         st.session_state.page = 'home'
-        st.rerun()
 
 with col2:
     if st.button("Contact"):
         st.session_state.page = 'contact'
-        st.rerun()
 
 st.sidebar.markdown("### Product Categories")
 
@@ -46,11 +44,10 @@ search_query = st.sidebar.text_input("Search Product:")
 filtered_products = [p for p in product_pages if search_query.lower() in p.lower()]
 
 # Dropdown menu for product selection
-selected_product = st.sidebar.selectbox("Select a Product:", ["None"] + filtered_products)
+selected_product = st.sidebar.selectbox("Select a Product:", ["None"] + filtered_products, index=0)
 
 if selected_product != "None":
     st.session_state.page = selected_product
-    st.rerun()
 
 # Try to load the selected page
 try:

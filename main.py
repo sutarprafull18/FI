@@ -21,19 +21,13 @@ st.sidebar.title("Furn Italia")
 st.sidebar.markdown("---")
 
 # Navigation buttons
-col1, col2 = st.sidebar.columns(2)
+if st.sidebar.button("Home"):
+    st.session_state.page = 'home'
+    st.session_state.selected_category = None
 
-with col1:
-    if st.button("Home"):
-        st.session_state.page = 'home'
-        st.session_state.selected_category = None
-        st.experimental_rerun()
-
-with col2:
-    if st.button("Contact"):
-        st.session_state.page = 'contact'
-        st.session_state.selected_category = None
-        st.experimental_rerun()
+if st.sidebar.button("Contact"):
+    st.session_state.page = 'contact'
+    st.session_state.selected_category = None
 
 st.sidebar.markdown("### Product Categories")
 
@@ -52,9 +46,8 @@ categories = {
 
 # Category selection
 for category in categories.keys():
-    if st.sidebar.button(category, key=category):
+    if st.sidebar.button(category, key=f"cat_{category}"):
         st.session_state.selected_category = category
-        st.experimental_rerun()
 
 # Show products only if a category is selected
 if st.session_state.selected_category:
@@ -64,9 +57,8 @@ if st.session_state.selected_category:
     filtered_products = [p for p in products if search_query.lower() in p.lower()]
     
     for product in filtered_products:
-        if st.sidebar.button(product, key=product):
+        if st.sidebar.button(product, key=f"prod_{product}"):
             st.session_state.page = product
-            st.experimental_rerun()
 
 # Try to load the selected page
 try:

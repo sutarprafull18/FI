@@ -37,7 +37,7 @@ categories = {
     ],
     "Leather Sofa": ["S1_71","FI_3306_Rec","BIG_BOX","Z006", "E091", "FI_5713", "FI_5855", "FI_6429", "FM252", "Jupiter","ZM896", "ZM899", "WA355", "ZA63",],
     "Other": ["Chester","Single_Chair_bed","Longer","wooden","Boat",],
-    "Bedroom": [],
+    "Bedroom": ["bed","side_table"],
     "Outdoor": [],
     "Dining": [],
     "Office": []

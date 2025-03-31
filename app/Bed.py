@@ -6,7 +6,7 @@ def show_product_detail():
     st.write("Description of Bed.")
 
     # Path to the images folder for Bed
-    image_folder = "images/Bed"
+    image_folder = "images/bed"
 
     # List all images in the folder
     if os.path.exists(image_folder):

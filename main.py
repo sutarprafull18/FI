@@ -33,10 +33,10 @@ st.sidebar.markdown("### Product Categories")
 
 # Product pages (numbers replaced with FI_xxxx format)
 product_pages = [
-    "S1_FI_71", "Sahara", "Durban", "Casa", "Rec_FI_3306",
-    "Z_FI_006", "E_FI_091", "BIG_BOX", "Chester", "Stallion", "FI_5713", "FI_5855", "FI_6429", "Boat", "FM_FI_252", "Jupiter", "Linus", "Longer", "Niwasa", "Prada",
-    "Single_Chair_bed", "Steel_Land", "Straight_Line", "Violino", "WA_FI_355", "ZA_FI_63",
-    "ZM_FI_896", "ZM_FI_899", "wooden"
+    "S1_71", "Sahara", "Durban", "Casa", "FI_3306_Rec",
+    "Z006", "E091", "BIG_BOX", "Chester", "Stallion", "FI_5713", "FI_5855", "FI_6429", "Boat", "FM252", "Jupiter", "Linus", "Longer", "Niwasa", "Prada",
+    "Single_Chair_bed", "Steel_Land", "Straight_Line", "Violino", "WA355", "ZA63",
+    "ZM896", "ZM899", "wooden"
 ]
 
 # Search box for filtering products

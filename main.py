@@ -13,6 +13,8 @@ st.set_page_config(
 # Initialize session state for page navigation
 if 'page' not in st.session_state:
     st.session_state.page = 'home'
+if 'selected_category' not in st.session_state:
+    st.session_state.selected_category = None
 
 # Sidebar Navigation
 st.sidebar.title("Furn Italia")
@@ -24,11 +26,13 @@ col1, col2 = st.sidebar.columns(2)
 with col1:
     if st.button("Home"):
         st.session_state.page = 'home'
+        st.session_state.selected_category = None
         st.experimental_rerun()
 
 with col2:
     if st.button("Contact"):
         st.session_state.page = 'contact'
+        st.session_state.selected_category = None
         st.experimental_rerun()
 
 st.sidebar.markdown("### Product Categories")
@@ -46,13 +50,19 @@ categories = {
     "Office": []
 }
 
-# Search box for filtering products
-search_query = st.sidebar.text_input("Search Product:")
+# Category selection
+for category in categories.keys():
+    if st.sidebar.button(category, key=category):
+        st.session_state.selected_category = category
+        st.experimental_rerun()
 
-# Display categories
-for category, products in categories.items():
-    st.sidebar.markdown(f"#### {category}")
+# Show products only if a category is selected
+if st.session_state.selected_category:
+    st.sidebar.markdown(f"#### {st.session_state.selected_category}")
+    products = categories[st.session_state.selected_category]
+    search_query = st.sidebar.text_input("Search Product:")
     filtered_products = [p for p in products if search_query.lower() in p.lower()]
+    
     for product in filtered_products:
         if st.sidebar.button(product, key=product):
             st.session_state.page = product
